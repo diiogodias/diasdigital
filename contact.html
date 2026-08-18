@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Dias Digital</title>
+  <meta name="description" content="Get a free, no-obligation quote from Dias Digital. Usually respond within 24 hours.">
+  <link rel="icon" href="images/symbol.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="nav-logo">
+        <img src="images/symbol.png" alt="Dias Digital">
+        <span>Dias Digital</span>
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="contact.html" class="btn btn-gold nav-cta">Get a Quote</a>
+      </nav>
+    </div>
+  </header>
+  <div class="nav-overlay"></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Let's talk</p>
+        <h1>Get in Touch</h1>
+        <p class="lead">Free, no-obligation quote. Usually respond within 24 hours.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-grid">
+        <div class="form-card reveal">
+          <div class="form-success" role="status">Thanks — your message has been sent. I'll get back to you within 24 hours.</div>
+          <p class="form-error" role="alert">Sorry, something went wrong. Please email diogo@diasdigital.co.uk instead.</p>
+          <form id="contact-form" action="https://formspree.io/f/mdenppow" method="POST">
+            <div class="form-row">
+              <div class="field">
+                <label for="name">Full Name</label>
+                <input id="name" name="name" type="text" required autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="business">Business Name (optional)</label>
+                <input id="business" name="business" type="text" autocomplete="organization">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label for="email">Email Address</label>
+                <input id="email" name="email" type="email" required autocomplete="email">
+              </div>
+              <div class="field">
+                <label for="phone">Phone (optional)</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel">
+              </div>
+            </div>
+            <div class="field">
+              <label for="service">What are you looking for?</label>
+              <select id="service" name="service" required>
+                <option value="" selected disabled>Please select</option>
+                <option>New Website</option>
+                <option>Website Redesign</option>
+                <option>Hosting Only</option>
+                <option>Google Business Profile Setup</option>
+                <option>Not Sure Yet</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="budget">Budget range</label>
+              <select id="budget" name="budget" required>
+                <option value="" selected disabled>Please select</option>
+                <option>Under £200</option>
+                <option>£200–£400</option>
+                <option>£400–£800</option>
+                <option>£800+</option>
+                <option>Not Sure</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-gold">Send Message</button>
+            <p class="form-note">I do not share your details with anyone. Ever.</p>
+          </form>
+        </div>
+
+        <aside class="info-card reveal">
+          <div class="info-block">
+            <p class="label">Prefer to email directly?</p>
+            <p><a href="mailto:diogo@diasdigital.co.uk">diogo@diasdigital.co.uk</a></p>
+          </div>
+          <div class="info-block">
+            <p class="label">Based in</p>
+            <p>UK (Surrey/Crawley area)</p>
+          </div>
+          <div class="info-block">
+            <p class="label">Response time</p>
+            <p>Within 24 hours</p>
+          </div>
+          <div class="info-block">
+            <p class="label">Working hours</p>
+            <p>Mon–Fri, 9am–6pm</p>
+          </div>
+          <div class="divider"></div>
+          <h3>What happens next?</h3>
+          <ol class="steps">
+            <li>You send your message</li>
+            <li>I review your requirements</li>
+            <li>I send you a tailored quote within 24 hours</li>
+            <li>We hop on a quick call if needed</li>
+            <li>Work begins</li>
+          </ol>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <img src="images/mainlogo.png" alt="Dias Digital" class="footer-mainlogo">
+        </a>
+      </div>
+      <div class="footer-col">
+        <h4>Quick links</h4>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get in touch</h4>
+        <a href="mailto:diogo@diasdigital.co.uk">diogo@diasdigital.co.uk</a>
+        <p>Based in the UK</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">© 2026 Dias Digital · All rights reserved · Built with care in the UK</div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

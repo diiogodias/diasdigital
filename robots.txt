@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://diasdigital.co.uk/sitemap.xml
