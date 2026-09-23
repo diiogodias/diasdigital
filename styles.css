@@ -23,6 +23,7 @@
   --max: 1180px;
   --radius: 14px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --sale: #e24b4b;
 }
 
 *,
@@ -164,6 +165,10 @@ h3 {
 
 .section-header.center .lead {
   margin: 16px auto 0;
+}
+
+.section-header .discount-banner {
+  margin-top: 16px;
 }
 
 /* ---------- Layout ---------- */
@@ -394,6 +399,27 @@ body.menu-open {
 
 .page-hero h1 {
   margin-bottom: 14px;
+}
+
+.discount-banner {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 6px 14px;
+  border: 1px solid rgba(226, 75, 75, 0.45);
+  background: rgba(226, 75, 75, 0.12);
+  color: #ff6b6b;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 99px;
+}
+
+.price-old {
+  color: var(--sale);
+  text-decoration: line-through;
+  text-decoration-color: var(--sale);
+  text-decoration-thickness: 2px;
 }
 
 /* ---------- Home hero ---------- */
@@ -787,9 +813,18 @@ body.menu-open {
   font-size: 3rem;
   margin: 10px 0 22px;
   color: var(--text);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 12px;
 }
 
-.price-amount span {
+.price-amount .price-old {
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+.price-period {
   font-size: 1.1rem;
   color: var(--muted);
 }
@@ -1147,6 +1182,10 @@ tr:last-child td {
   margin-top: 16px;
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+table .price-old {
+  margin-right: 6px;
 }
 
 /* ---------- FAQ ---------- */
