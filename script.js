@@ -99,6 +99,11 @@
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
+      const honeypot = form.querySelector('[name="_honey"]');
+      if (honeypot && honeypot.value) {
+        return;
+      }
+
       const submitBtn = form.querySelector('button[type="submit"]');
       const success = document.querySelector(".form-success");
       const errorBox = document.querySelector(".form-error");
@@ -124,5 +129,59 @@
           if (submitBtn) submitBtn.disabled = false;
         });
     });
+  }
+
+  function getCookie(name) {
+    const prefix = name + "=";
+    const parts = document.cookie.split(";");
+    for (let i = 0; i < parts.length; i++) {
+      const part = parts[i].trim();
+      if (part.indexOf(prefix) === 0) {
+        return decodeURIComponent(part.slice(prefix.length));
+      }
+    }
+    return "";
+  }
+
+  function setConsentCookie(value) {
+    document.cookie =
+      "dias_cookie_consent=" + value + "; path=/; max-age=31536000; SameSite=Lax";
+  }
+
+  function showCookieBanner() {
+    if (getCookie("dias_cookie_consent")) return;
+
+    const banner = document.createElement("div");
+    banner.className = "cookie-banner";
+    banner.setAttribute("role", "dialog");
+    banner.setAttribute("aria-label", "Cookie consent");
+    banner.innerHTML =
+      '<div class="cookie-banner-inner">' +
+      "<p>We use cookies to improve your experience and analyse site traffic. By continuing to use this site you accept our use of cookies.</p>" +
+      '<div class="cookie-banner-actions">' +
+      '<button type="button" class="cookie-btn cookie-accept">Accept</button>' +
+      '<button type="button" class="cookie-btn cookie-decline">Decline</button>' +
+      "</div></div>";
+
+    document.body.appendChild(banner);
+
+    banner.querySelector(".cookie-accept").addEventListener("click", function () {
+      setConsentCookie("accepted");
+      banner.remove();
+      if (typeof window.loadDiasAnalytics === "function") {
+        window.loadDiasAnalytics();
+      }
+    });
+
+    banner.querySelector(".cookie-decline").addEventListener("click", function () {
+      setConsentCookie("declined");
+      banner.remove();
+    });
+  }
+
+  if (document.readyState === "complete") {
+    showCookieBanner();
+  } else {
+    window.addEventListener("load", showCookieBanner);
   }
 })();
