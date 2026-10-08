@@ -1618,8 +1618,9 @@ table .price-old {
   right: 0;
   bottom: 0;
   z-index: 3000;
-  background: #111111;
-  border-top: 1px solid #C9A96E;
+  background: rgba(15, 15, 15, 0.96);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding: 20px 24px;
   box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.45);
 }
@@ -1634,7 +1635,7 @@ table .price-old {
 }
 
 .cookie-banner p {
-  color: #f5f5f5;
+  color: var(--silver);
   font-size: 0.92rem;
   line-height: 1.55;
   margin: 0;
@@ -1657,28 +1658,30 @@ table .price-old {
   letter-spacing: 0.04em;
   cursor: pointer;
   transition: background 0.25s var(--ease), color 0.25s var(--ease),
-    border-color 0.25s var(--ease);
+    border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 
 .cookie-accept {
-  background: #C9A96E;
-  color: #111111;
-  border: 1px solid #C9A96E;
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid var(--accent);
 }
 
 .cookie-accept:hover {
-  background: #d4b984;
-  border-color: #d4b984;
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  box-shadow: 0 10px 30px rgba(65, 105, 225, 0.35);
 }
 
 .cookie-decline {
   background: transparent;
-  color: #f5f5f5;
-  border: 1px solid #C9A96E;
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .cookie-decline:hover {
-  color: #C9A96E;
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 /* ---------- Bento homepage ---------- */
