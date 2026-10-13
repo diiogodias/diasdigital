@@ -1,15 +1,14 @@
 export default {
   async fetch(request, env) {
     const origin = request.headers.get('Origin') || '';
-    const allowedOrigins = [
-      'https://diasdigital.co.uk',
-      'http://localhost',
-      'http://127.0.0.1'
-    ];
+    const allowed =
+      origin === 'https://diasdigital.co.uk' ||
+      origin === 'https://www.diasdigital.co.uk' ||
+      origin.startsWith('http://localhost') ||
+      origin.startsWith('http://127.0.0.1');
 
     const corsHeaders = {
-      'Access-Control-Allow-Origin':
-        allowedOrigins.includes(origin) ? origin : 'https://diasdigital.co.uk',
+      'Access-Control-Allow-Origin': allowed ? origin : 'https://diasdigital.co.uk',
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     };
@@ -64,13 +63,27 @@ export default {
       try {
         const body = await request.json();
 
-        const response = await fetch(env.FORMSPREE_ENDPOINT, {
+        let endpoint = env.FORMSPREE_ENDPOINT || 'https://formspree.io/f/mdenppow';
+        if (!/^https?:\/\//i.test(endpoint)) {
+          endpoint = 'https://formspree.io/f/' + String(endpoint).replace(/^\/+/, '');
+        }
+
+        const form = new URLSearchParams();
+        const fields = ['name', 'email', 'phone', 'business', 'service', 'budget', 'message'];
+        for (const key of fields) {
+          if (body[key] != null && String(body[key]) !== '') {
+            form.append(key, String(body[key]));
+          }
+        }
+        if (body.email) form.append('_replyto', String(body.email));
+
+        const response = await fetch(endpoint, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
             'Accept': 'application/json',
           },
-          body: JSON.stringify(body),
+          body: form.toString(),
         });
 
         if (response.ok) {
@@ -78,13 +91,15 @@ export default {
             JSON.stringify({ success: true }),
             { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
           );
-        } else {
-          return new Response(
-            JSON.stringify({ error: 'Submission failed' }),
-            { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-          );
         }
+
+        console.log('Formspree failed', response.status, await response.text());
+        return new Response(
+          JSON.stringify({ error: 'Submission failed' }),
+          { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
       } catch (err) {
+        console.log('Contact proxy error', String(err));
         return new Response(
           JSON.stringify({ error: 'Something went wrong' }),
           { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
